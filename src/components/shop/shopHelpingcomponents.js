@@ -50,7 +50,7 @@ export const SkinType = () => {
   };
 
   return (
-    response && (
+    response?.length > 0 && (
       <>
         <div className="SkinType_Container  padingation_another MaxComponent">
           <Swiper
@@ -110,7 +110,7 @@ export const ProductType = () => {
   };
 
   return (
-    response && (
+    response?.length > 0 && (
       <div className="SkinType_Container padingation_another MaxComponent">
         <Swiper
           pagination={{
@@ -157,7 +157,7 @@ export const Brands = ({ isBrand }) => {
   }, [isMobile]);
 
   return (
-    response && (
+    response?.length > 0 && (
       <div
         className={`${
           isBrand
@@ -215,7 +215,7 @@ export const SkinConditions = () => {
   };
 
   return (
-    response && (
+    response?.length > 0 && (
       <div className="SkinType_Container padingation_another MaxComponent">
         <Swiper
           pagination={{
@@ -274,7 +274,7 @@ export const Nutrition = () => {
   };
 
   return (
-    response && (
+    response?.length > 0 && (
       <div className="SkinType_Container  padingation_another MaxComponent ">
         <Swiper
           pagination={{

@@ -3164,6 +3164,11 @@
 .NewsCard .title {
   font-size: 22px;
   margin-top: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
 }
 .NewsCard .desc {
   font-size: 18px;

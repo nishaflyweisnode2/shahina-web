@@ -13,11 +13,14 @@ import ShopMenu from "./ShopMenu";
 import { useNavigate } from "react-router-dom";
 import { getLimitedOffer, getWishlist } from "../../Repository/Api";
 import LatestNews from "../home/LatestNews";
+import { useSelector } from "react-redux";
+import { isAuthenticated } from "../../store/authSlice";
 
 const Shop = () => {
   const [response, setResponse] = useState([]);
   const [fav, setFav] = useState([]);
 
+  const isLoggedIn = useSelector(isAuthenticated);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,8 +32,13 @@ const Shop = () => {
 
   useEffect(() => {
     getLimitedOffer(setResponse, "shopPage");
-    getWishlist(setFav);
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      getWishlist(setFav);
+    }
+  }, [isLoggedIn]);
 
   return (
     <section>

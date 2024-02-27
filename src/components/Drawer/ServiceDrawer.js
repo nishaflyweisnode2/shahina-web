@@ -139,7 +139,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
               <h5> Sorry, we couldn't find any matching services</h5>
             </div>
           ) : (
-            response?.map((i, index) => (
+            response?.reverse()?.map((i, index) => (
               <div className="Items" key={index}>
                 <Link to={`/indi-services/${i._id}`}>
                   <ImageLazyLoading

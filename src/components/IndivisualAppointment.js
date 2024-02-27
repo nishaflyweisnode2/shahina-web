@@ -62,7 +62,7 @@ const IndivisualAppointment = () => {
 
         <form onSubmit={submitHandler}>
           <div>
-            <p>First Name</p>
+            <p className="required">First Name</p>
             <input
               type="text"
               placeholder="Enter Your First Name"
@@ -72,7 +72,7 @@ const IndivisualAppointment = () => {
           </div>
 
           <div>
-            <p>Last Name</p>
+            <p className="required">Last Name</p>
             <input
               type="text"
               placeholder="Enter Your Last Name"
@@ -82,7 +82,7 @@ const IndivisualAppointment = () => {
           </div>
 
           <div>
-            <p>Email</p>
+            <p className="required">Email</p>
             <input
               type="email"
               name="email"
@@ -93,7 +93,7 @@ const IndivisualAppointment = () => {
           </div>
 
           <div>
-            <p>Contact Number</p>
+            <p className="required">Contact Number</p>
             <PhoneInput country={"us"} onChange={setPhone} />
           </div>
 
@@ -104,7 +104,7 @@ const IndivisualAppointment = () => {
               name="dob"
               placeholder="MM/DD/YYYY (Optional) "
               onChange={(e) => setDob(e.target.value)}
-              required
+              
             />
           </div>
 
@@ -118,7 +118,7 @@ const IndivisualAppointment = () => {
 
           {show && (
             <div>
-              <p> New Password</p>
+              <p className="required"> New Password</p>
               <div className="input-div">
                 <input
                   type={show2 ? "text" : "password"}
@@ -137,7 +137,7 @@ const IndivisualAppointment = () => {
           )}
 
           <div>
-            <p>Select your Gender</p>
+            <p className="required">Select your Gender</p>
             <div className="gender_selection" style={{ marginTop: "0" }}>
               <button
                 type="button"
