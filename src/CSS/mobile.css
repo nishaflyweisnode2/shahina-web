@@ -1001,6 +1001,7 @@
   }
   .service_details_page .center_img.tweet_image {
     height: 200px;
+    min-width: auto;
   }
   .plan_mobile {
     font-size: 16px;
