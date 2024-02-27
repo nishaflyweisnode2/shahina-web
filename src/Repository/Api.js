@@ -1067,9 +1067,8 @@ const verifySubscription = async (id, setResponse) => {
         },
       }
     );
-    if(response.status =200) {
+    if(response.status === 200) {
       setResponse(true);
-  
     }
   } catch {}
 };
@@ -1482,6 +1481,7 @@ export const savedBookingCard = async () => {
         },
       }
     );
+    console.log(res.status)
   } catch {}
 };
 

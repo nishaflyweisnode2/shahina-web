@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { paymentCards } from "../constants/constant";
 import { getContactDetails, getServiceMenu } from "../Repository/Api";
 import { Call, Mail } from "./Helping/Mail";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { openBanner } from "../store/BannerSlice";
 import { ImageLazyLoading } from "../utils/helpingComponent";
 
@@ -14,7 +14,7 @@ const Footer = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
   const [services, setServices] = useState([]);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const handleOpen = () => {
   //   dispatch(openBanner());

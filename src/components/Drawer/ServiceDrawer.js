@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Drawer } from "antd";
 import { Link } from "react-router-dom";
 import { getServiceProduct, getServiceProductAuth } from "../../Repository/Api";
@@ -15,7 +15,7 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
   const [load, setLoad] = useState(false);
   const isLoggedIn = useSelector(isAuthenticated);
 
-  const fetchHandler = async () => {
+  const fetchHandler = useCallback(async() => {
     try {
       setLoad(true);
       if (isLoggedIn) {
@@ -29,13 +29,13 @@ const ServiceDrawer = ({ open, onClose, title, id }) => {
     } finally {
       setLoad(false);
     }
-  };
+  },[isLoggedIn , id ])
 
   useEffect(() => {
     if (open === true) {
       fetchHandler();
     }
-  }, [open]);
+  }, [open ,fetchHandler]);
 
   const Heading = name ? name : title;
 

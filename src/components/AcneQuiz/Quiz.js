@@ -19,7 +19,7 @@ const Quiz = () => {
     if (answer1 && answer2 && answer3 && answer4) {
       ReviewQuiz(answer1, answer2, answer3, answer4, email, navigate);
     }
-  },[answer1 , answer2 ,answer3 , answer4])
+  },[answer1 , answer2 ,answer3 , answer4 , email , navigate])
 
   const [items, setItems] = useState([]);
 

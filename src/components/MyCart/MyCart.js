@@ -164,6 +164,7 @@ const MyCart = () => {
   };
 
   const [isPushingItems, setIsPushingItems] = useState(false);
+
   const pushItemInApi = useCallback(async() => {
     if (isPushingItems) return;
     setIsPushingItems(true);
@@ -189,11 +190,11 @@ const MyCart = () => {
       dispatch(removeFromCart(removePayload));
     }
     setIsPushingItems(false);
-  },[dummyCart])
+  },[dummyCart ,dispatch ,isPushingItems ])
+
 
   const pushDummyService = useCallback(async() => {
     const processedProductIds = new Set();
-
     for (const item of serviceCart) {
       const ProductId = item.id;
       if (processedProductIds.has(ProductId)) {
@@ -217,7 +218,7 @@ const MyCart = () => {
       await dispatch(AddServiceBulk(ProductId, payload));
       dispatch(removeServiceDummy(ProductId));
     }
-  },[serviceCart])
+  },[serviceCart ,dispatch])
   
   useEffect(() => {
     if (dummyCart?.length > 0) {
