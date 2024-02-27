@@ -33,7 +33,7 @@ const AllNews = () => {
           <section className="p-3" key={index}>
             <div className="my-2">
             
-            <h3 className="my-6 font-medium text-3xl text-primary title">
+            <h3 className="my-6 font-medium text-3xl text-primary title_heading">
                 {card.title}
               </h3>
               <ImageLazyLoading

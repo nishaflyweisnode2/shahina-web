@@ -59,7 +59,7 @@ const ServiceCard = ({ src, service, id, name }) => {
               onClick={() => showDrawer()}
             >
               <div className="flex flex-col items-center space-y-3">
-                <span className="text-4xl font-medium Title text-uppercase ">
+                <span className="text-4xl font-medium Title text-uppercase "      style={{ textAlign: "center" }}>
                   {service}
                 </span>
 

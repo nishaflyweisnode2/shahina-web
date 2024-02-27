@@ -3169,6 +3169,8 @@
   text-overflow: ellipsis;
   max-width: 100%;
   display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 .NewsCard .desc {
   font-size: 18px;

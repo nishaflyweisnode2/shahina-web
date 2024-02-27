@@ -139,7 +139,9 @@ const MyProfile = () => {
           {QueryHandler(profile?.firstName, "First Name")}
           {QueryHandler(profile?.lastName, "Last Name")}
           {QueryHandler(profile?.gender, "Gender")}
-          {QueryHandler(DateFormatter(profile?.dob), "Date of Birth")}
+          {profile?.dob != null &&
+            QueryHandler(DateFormatter(profile?.dob), "Date of Birth")}
+         
           {QueryHandler(profile?.countryCode, "Country Code")}
           {profile?.phone && (
             <div className="two-sec">
