@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,26 +22,25 @@ const SwipCal = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [checkDate, setCheckDate] = useState(null);
 
-  function generateDates(startDate, numberOfDays) {
+  const generateDates = useCallback((startDate, numberOfDays) => {
     const dates = [...generatedDates];
     let lastDate = lastGeneratedDate || startDate;
-
     for (let i = 0; i < numberOfDays; i++) {
       const date = new Date(lastDate);
       date.setDate(lastDate.getDate() + 1);
       dates.push(date);
       lastDate = date;
     }
-
     setLastGeneratedDate(lastDate);
     setGeneratedDates(dates);
-  }
+  },[lastGeneratedDate ,generatedDates])
 
-  const handleGenerateDates = () => {
+
+  const handleGenerateDates = useCallback(() => {
     const oneDayBeforeToday = new Date();
     oneDayBeforeToday.setDate(oneDayBeforeToday.getDate());
     generateDates(oneDayBeforeToday, 14);
-  };
+  },[generateDates])
 
   const formatDate = (date) => {
     const day = date?.toLocaleDateString("en-US", {
@@ -90,7 +89,7 @@ const SwipCal = ({
 
   useEffect(() => {
     handleGenerateDates();
-  }, []);
+  }, [handleGenerateDates]);
 
   const sliderRef = useRef(null);
 
@@ -170,7 +169,7 @@ const SwipCal = ({
         handleGenerateDates();
       }
     }
-  }, [checkDate, generatedDates]);
+  }, [checkDate, generatedDates ,handleGenerateDates]);
 
   return (
     <div className="custome-fres-calender">

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const DescriptionView = ({
@@ -44,7 +44,7 @@ const DescriptionView = ({
           )}
 
           <p className="text-2xl font-normal mb- leading-10 text-left description ">
-            <View_description description={desc} />
+            <ViewDescription description={desc} />
           </p>
           {desc1 && (
             <p className="text-2xl font-normal leading-10 text-left mt-8 description">

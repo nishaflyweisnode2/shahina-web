@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { filterProduct } from "../../Repository/Api";
 
 const SearchHeader = ({ isOpen, setIsOpen }) => {

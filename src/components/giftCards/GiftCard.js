@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addGiftItem, getGiftCard } from "../../Repository/Api";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const GiftCard = () => {
@@ -114,7 +114,7 @@ const GiftCard = () => {
                   {i.name}
                 </h2>
                 <div className="mt-3 mb-4" />
-                <View_description description={i.description} />
+                <ViewDescription description={i.description} />
                 <div className="mt-3 mb-4" />
 
                 <label

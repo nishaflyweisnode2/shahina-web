@@ -262,7 +262,7 @@ function App() {
     if (isLoggedIn === true) {
       dispatch(getSession());
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn ,dispatch]);
 
   return (
     <main>

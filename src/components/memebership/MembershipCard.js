@@ -1,10 +1,10 @@
 /** @format */
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { View_description } from "../../Helper/Herlper";
-import { getProfile, showMsg, takeVerification } from "../../Repository/Api";
+import { ViewDescription } from "../../Helper/Herlper";
+import {  showMsg, takeVerification } from "../../Repository/Api";
 import { isAuthenticated } from "../../store/authSlice";
 import SubsModal from "../Drawer/SubsModal";
 
@@ -115,7 +115,7 @@ const MembershipCard = ({
         </div>
         <form onSubmit={submitHandler}>
           <div className="text-sm text-white px-8">
-            <View_description description={list} />
+            <ViewDescription description={list} />
 
             <ul className="membership_check_box">
               {term && (

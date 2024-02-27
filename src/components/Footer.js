@@ -6,7 +6,7 @@ import { paymentCards } from "../constants/constant";
 import { getContactDetails, getServiceMenu } from "../Repository/Api";
 import { Call, Mail } from "./Helping/Mail";
 import { useDispatch } from "react-redux";
-import { openBanner } from "../store/BannerSlice";
+// import { openBanner } from "../store/BannerSlice";
 import { ImageLazyLoading } from "../utils/helpingComponent";
 
 const Footer = () => {
@@ -16,9 +16,9 @@ const Footer = () => {
 
   const dispatch = useDispatch();
 
-  const handleOpen = () => {
-    dispatch(openBanner());
-  };
+  // const handleOpen = () => {
+  //   dispatch(openBanner());
+  // };
 
   function fetchHandler() {
     getServiceMenu(setServices);

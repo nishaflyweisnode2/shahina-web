@@ -1,4 +1,4 @@
-export const View_description = ({ description }) => {
+export const ViewDescription = ({ description }) => {
     return <div dangerouslySetInnerHTML={{ __html: description }} />;
   };
   

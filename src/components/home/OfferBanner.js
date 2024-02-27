@@ -5,7 +5,7 @@ import { getLimitedOffer } from "../../Repository/Api";
 import { GrClose } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { closeBanner } from "../../store/BannerSlice";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 
 const OfferBanner = ({ setBanner }) => {
   const [response, setResponse] = useState([]);
@@ -50,7 +50,7 @@ const OfferBanner = ({ setBanner }) => {
           </div>
           <div style={{ textAlign: "left" }}>
             <h1 className="absolute bottom-10 left-16 text-center w-[37rem] offer_description ">
-              <View_description description={response?.[0]?.desc} />
+              <ViewDescription description={response?.[0]?.desc} />
             </h1>
           </div>
 
@@ -111,7 +111,7 @@ const OfferBanner = ({ setBanner }) => {
           <div className="content">
             <img src={response?.[0]?.bannerImage} alt="" />
             <h1>
-              <View_description description={response?.[0]?.desc} />
+              <ViewDescription description={response?.[0]?.desc} />
             </h1>
           </div>
           <h1> </h1>

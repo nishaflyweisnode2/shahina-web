@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 import {
   getProfile,
   getSubscription,
@@ -57,8 +57,8 @@ const Membership = () => {
 
   const getItems = faq?.map((i, index) => ({
     key: index,
-    label: <View_description description={i.question} />,
-    children: <View_description description={i.answer} />,
+    label: <ViewDescription description={i.question} />,
+    children: <ViewDescription description={i.answer} />,
   }));
 
   return (

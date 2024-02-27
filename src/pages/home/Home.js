@@ -8,11 +8,11 @@ import Description from "../../components/home/Description";
 import LatestNews from "../../components/home/LatestNews";
 import Testimonials from "../../components/PaymentPlans/Testimonials";
 import GallarySlider from "../../components/Sliders/GallarySlider";
-import { useSelector } from "react-redux";
-import { isBannerOpen } from "../../store/BannerSlice";
+// import { useSelector } from "react-redux";
+// import { isBannerOpen } from "../../store/BannerSlice";
 
 const Home = () => {
-  const isOpen = useSelector(isBannerOpen);
+  // const isOpen = useSelector(isBannerOpen);
 
   useEffect(() => {
     window.scrollTo({
@@ -34,7 +34,7 @@ const Home = () => {
           leave our spa loving their skin. That's why over 130 people have given
           us a 5-star rating on Google!
         </p>
-        <img src="/asessts/google-review.png" />
+        <img src="/asessts/google-review.png" alt='' />
       </div>
 
       <Testimonials />

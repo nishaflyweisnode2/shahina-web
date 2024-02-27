@@ -2,15 +2,15 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const NewsCard = ({ src, title, content, id }) => {
   const textTransformation = (content) => {
     if (content?.length > 100) {
-      return <View_description description={content?.substr(0, 100)} />;
+      return <ViewDescription description={content?.substr(0, 100)} />;
     } else {
-      return <View_description description={content} />;
+      return <ViewDescription description={content} />;
     }
   };
 

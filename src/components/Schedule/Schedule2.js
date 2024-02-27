@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getAllSlot,
@@ -23,16 +23,19 @@ const Schedule2 = () => {
   const [time, setTime] = useState("");
   const [response, setResponse] = useState([]);
 
-  const getHandler = () => {
-    const date = date1;
-    getAllSlot(setResponse, date);
-  };
+  const getHandler =useCallback(() => {
+    if(date1){
+      const date = date1;
+      getAllSlot(setResponse, date);
+    
+    }
+  },[date1])
 
   useEffect(() => {
-    if (date1) {
       getHandler();
-    }
-  }, [date1]);
+  }, [getHandler]);
+
+
   const updatedTime = time?.split("T")[1]?.slice(0, 5);
 
   const payload = { date: date1, time: updatedTime };
@@ -76,19 +79,19 @@ const Schedule2 = () => {
   const [crossDates, setCrossDates] = useState();
   const [nextAvailableDate, setNextAvailable] = useState();
 
-  function getBooked() {
+  const getBooked = useCallback(() => {
     if (date1) {
       const year = parseInt(date1?.split("-")[0], 10);
       const month = parseInt(date1?.split("-")[1], 10);
       getCrossedSlot(setCrossDates, month, year);
     }
-  }
+  },[date1])
 
   useEffect(() => {
     getBooked();
-  }, [date1]);
+  }, [getBooked]);
 
-  const findNextAvailableDate = (date) => {
+  const findNextAvailableDate = useCallback( (date) => {
     const nextDay = new Date(date);
     nextDay.setDate(nextDay.getDate() + 1);
 
@@ -103,7 +106,7 @@ const Schedule2 = () => {
     }
 
     return nextDay.toISOString().split("T")[0];
-  };
+  } ,[])
 
   useEffect(() => {
     if (crossDates && crossDates.length > 0) {
@@ -116,7 +119,7 @@ const Schedule2 = () => {
         setNextAvailable(findNextAvailableDate(new Date(date1)));
       }
     }
-  }, [crossDates, date1]);
+  }, [crossDates, date1] ,findNextAvailableDate);
 
   return (
     <>

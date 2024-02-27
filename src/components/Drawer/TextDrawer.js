@@ -3,7 +3,7 @@
 import React from "react";
 import { Modal } from "antd";
 import { AiOutlineClose } from "react-icons/ai";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 
 const TextDrawer = ({ open, setOpen, title, desc }) => {
   return (
@@ -19,7 +19,7 @@ const TextDrawer = ({ open, setOpen, title, desc }) => {
         <AiOutlineClose onClick={() => setOpen(false)} />
       </div>
       <p className="title"> {title} </p>
-      <View_description  description={desc} />
+      <ViewDescription  description={desc} />
       <p className="desc mt-5"></p>
     </Modal>
   );

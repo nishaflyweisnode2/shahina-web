@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import Question from "./Question";
 import { useNavigate } from "react-router-dom";
@@ -15,11 +15,11 @@ const Quiz = () => {
   const [answer4, setAnswer4] = useState("");
   const email = localStorage.getItem("acneEmail");
 
-  const submitHandler = () => {
+  const submitHandler = useCallback(() => {
     if (answer1 && answer2 && answer3 && answer4) {
       ReviewQuiz(answer1, answer2, answer3, answer4, email, navigate);
     }
-  };
+  },[answer1 , answer2 ,answer3 , answer4])
 
   const [items, setItems] = useState([]);
 
@@ -37,7 +37,7 @@ const Quiz = () => {
 
   useEffect(() => {
     submitHandler();
-  }, [answer1, answer2, answer3, answer4]);
+  }, [submitHandler]);
 
   function Reverse() {
     if (step === 1) {

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 import { getTerms } from "../Repository/Api";
 
 const Terms = () => {
@@ -24,6 +24,7 @@ const Terms = () => {
       behavior: "instant",
     });
   }, []);
+  
   return (
     <main className="service_details_page">
       <div className="Backward_Heading step_Heading" style={{ padding: 0 }}>
@@ -40,7 +41,7 @@ const Terms = () => {
         <div className="content privacy_policy" style={{ padding: "20px" }}>
           {response?.map((i, index) => (
             <p className="desc" key={index}>
-              <View_description description={i.terms} />
+              <ViewDescription description={i.terms} />
             </p>
           ))}
         </div>

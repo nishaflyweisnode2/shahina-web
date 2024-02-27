@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { getReviews } from "../../Repository/Api";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 
 // Import necessary Swiper modules
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -58,7 +58,7 @@ const Testimonials = () => {
             <SwiperSlide key={index}>
               <div className="Testimonial-Box">
                 <h5>{i.userName}</h5>
-                <View_description description={i.description} />
+                <ViewDescription description={i.description} />
               </div>
             </SwiperSlide>
           ))}

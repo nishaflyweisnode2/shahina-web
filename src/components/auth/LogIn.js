@@ -39,7 +39,7 @@ const LogIn = () => {
     if (isLoggedIn) {
       navigate("/my-profile");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn ,navigate]);
 
   return (
     <section>

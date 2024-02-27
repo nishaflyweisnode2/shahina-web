@@ -26,7 +26,7 @@ const MobileBar = () => {
     if (isLoggedIn) {
       dispatch(getCart());
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn ,dispatch]);
 
   useEffect(() => {
     if (isLoggedIn) {

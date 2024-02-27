@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { Tabs } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -19,9 +19,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticated } from "../store/authSlice";
 import { addToCart } from "../store/DummyCart";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import Loader from "./Loader/Loader";
+// import Loader from "./Loader/Loader";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -110,7 +110,6 @@ const ProductDetails = () => {
             name: product.name,
             images: product.productImages,
           },
-          quantity,
           sizePrice: price,
         };
       }
@@ -132,7 +131,7 @@ const ProductDetails = () => {
     getFrequently(setRelatedProducts, id);
   }, [id]);
 
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async() => {
     try {
       if (isLoggedIn === true) {
         await getSingleProductAuth(
@@ -161,11 +160,12 @@ const ProductDetails = () => {
       console.log(e);
     } finally {
     }
-  };
+  },[isLoggedIn ,id])
+
 
   useEffect(() => {
     fetchProduct();
-  }, [id, isLoggedIn]);
+  }, [fetchProduct]);
 
   useEffect(() => {
     window.scrollTo({
@@ -177,19 +177,19 @@ const ProductDetails = () => {
   const MyComp = ({ desc, list, listes }) => {
     return (
       <div className="content">
-        {desc && <View_description description={desc} />}
+        {desc && <ViewDescription description={desc} />}
 
         {list && (
           <ul>
             {list?.map((i, index) => (
               <div style={{ marginTop: "10px" }} key={`Step${i.step}${index}`}>
                 <span> {i?.step} </span>
-                <View_description description={i?.description} />
+                <ViewDescription description={i?.description} />
               </div>
             ))}
           </ul>
         )}
-        {listes && <View_description description={listes?.[0]} />}
+        {listes && <ViewDescription description={listes?.[0]} />}
       </div>
     );
   };
@@ -421,7 +421,7 @@ const ProductDetails = () => {
               <div class="ingredients">
                 <h3 class="heading">Key Ingredients</h3>
 
-                <View_description description={product?.keyIngredients?.[0]} />
+                <ViewDescription description={product?.keyIngredients?.[0]} />
               </div>
               <div className="Image_Container">
                 <img alt="" src={img} />

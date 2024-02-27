@@ -188,7 +188,7 @@ const PriceDetails = ({
                     </p>
                   </div>
                 </div>
-                <a href={contact?.mapLink} target="_blank">
+                <a href={contact?.mapLink} target="_blank" rel="noreferrer">
                   <button className="locate_btn">LOCATE ON GOOGLE MAPS</button>
                 </a>
               </div>

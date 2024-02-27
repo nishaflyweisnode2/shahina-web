@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse } from "antd";
 import { getFaq } from "../Repository/Api";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 
 const FAQ = () => {
   const [response, setResponse] = useState([]);
@@ -28,8 +28,8 @@ const FAQ = () => {
 
   const getItems = response?.map((i, index) => ({
     key: index,
-    label: <View_description description={i.question} />,
-    children: <View_description description={i.answer} />,
+    label: <ViewDescription description={i.question} />,
+    children: <ViewDescription description={i.answer} />,
   }));
 
   return (

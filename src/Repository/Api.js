@@ -563,7 +563,9 @@ const deleteFBP = (id) => {
           },
         }
       );
-      dispatch(getCart());
+      if(response === 200) {
+        dispatch(getCart());
+      }
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
@@ -842,8 +844,10 @@ const TimeandSlot = async (formData, navigate) => {
         },
       }
     );
-    navigate("/mycart");
-  } catch (e) {
+    if(response === 200) {
+      navigate("/mycart");
+    }
+     } catch (e) {
     const msg = e.response.data.message;
     showMsg("", msg, "danger");
   }
@@ -923,7 +927,7 @@ export const placeOrderwithIntent = async (orderId) => {
         },
       }
     );
-    const intentKey = response?.data?.paymentIntent?.client_secret;
+    console.log(response)
   } catch (e) {
     const msg = e.response.data.message;
     showMsg("", msg, "danger");
@@ -986,6 +990,7 @@ const orderFailed = async (payload) => {
         },
       }
     );
+    console.log(response?.status)
   } catch {}
 };
 
@@ -1000,6 +1005,7 @@ const updateAddress = async (payload) => {
         },
       }
     );
+    console.log(response?.status)
   } catch {}
 };
 
@@ -1014,6 +1020,7 @@ const updateProfile = async (payload) => {
         },
       }
     );
+    console.log(response?.status)
   } catch {}
 };
 
@@ -1027,6 +1034,7 @@ const removeAddress = async (payload) => {
         },
       }
     );
+    console.log(response?.status)
   } catch {}
 };
 
@@ -1059,7 +1067,10 @@ const verifySubscription = async (id, setResponse) => {
         },
       }
     );
-    setResponse(true);
+    if(response.status =200) {
+      setResponse(true);
+  
+    }
   } catch {}
 };
 
@@ -1074,6 +1085,7 @@ const cancelSubscription = async (payload) => {
         },
       }
     );
+    console.log(response?.status)
   } catch {}
 };
 
@@ -1128,6 +1140,7 @@ const AddToCartInBulk = (productId, payload) => {
           },
         }
       );
+      console.log(response?.status)
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
@@ -1147,6 +1160,7 @@ const AddServiceBulk = (payload, form) => {
           },
         }
       );
+      console.log(response?.status)
     } catch (e) {
       const msg = e.response.data.message;
       showMsg("", msg, "danger");
@@ -1179,6 +1193,7 @@ const giveReview = async (formData) => {
         },
       }
     );
+    console.log(response?.status)
   } catch {}
 };
 
@@ -1251,6 +1266,7 @@ const RenewMembership = async () => {
         },
       }
     );
+    console.log(response?.status)
   } catch (e) {
     const msg = e.response.data.message;
     showMsg("", msg, "danger");

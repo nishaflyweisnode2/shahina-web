@@ -1,13 +1,12 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   addAdOnInCart,
   addServiceInCart,
   deleteAdOn,
   deleteServiceCart,
-  getContactDetails,
   getOnService,
   getServiceforCart,
   getServiceProduct,
@@ -18,10 +17,10 @@ import { Alert } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { CartItems } from "../../store/cartSlice";
 import Select from "react-select";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 import ContactComponent from "../Contact/ContactComponent";
 import { IoMdNavigate } from "react-icons/io";
-import Loader from "../Loader/Loader";
+
 
 const Schedule1 = () => {
   const [response, setResponse] = useState([]);
@@ -34,7 +33,6 @@ const Schedule1 = () => {
   const [desc, setDesc] = useState("");
   const dispatch = useDispatch();
   const [err, setErr] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const myCart = useSelector(CartItems);
 
@@ -46,9 +44,12 @@ const Schedule1 = () => {
     getOnService(setAdOnService);
   };
 
-  const GetItems = () => {
-    getServiceProduct(setItem, id);
-  };
+  const GetItems = useCallback(() => {
+    if(id){
+      getServiceProduct(setItem, id);
+
+    }
+  },[id])
 
   function fetchHandler() {
     getServiceforCart(setResponse, setId);
@@ -60,10 +61,8 @@ const Schedule1 = () => {
   }, []);
 
   useEffect(() => {
-    if (id) {
       GetItems();
-    }
-  }, [id, cart]);
+  }, [GetItems]);
 
   const navigate = useNavigate();
 
@@ -124,7 +123,7 @@ const Schedule1 = () => {
     if (content?.length > 150) {
       return (
         <>
-          <View_description description={content?.substr(0, 150)} />
+          <ViewDescription description={content?.substr(0, 150)} />
           <p className="desc"> </p>
           <button
             className="view_more"
@@ -308,10 +307,8 @@ const Schedule1 = () => {
         desc={desc}
       />
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
+  
+  
           <div className="down_arrow_btn">
             <a href="#booknow">
               <IoMdNavigate color="#fff" />
@@ -531,8 +528,8 @@ const Schedule1 = () => {
               </div>
             </div>
           </div>
-        </>
-      )}
+   
+  
     </>
   );
 };

@@ -59,7 +59,7 @@ const ChangePassword = () => {
 
             <div className="input-div">
               <input
-                type={show ? "text" : "password"}
+                type={show1 ? "text" : "password"}
                 required
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />

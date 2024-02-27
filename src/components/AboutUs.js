@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAboutUs } from "../Repository/Api";
 import WithLoader from "./Wrapped/WithLoader";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 import GallarySlider from "./Sliders/GallarySlider";
 import { ImageLazyLoading } from "../utils/helpingComponent";
 
@@ -66,10 +66,10 @@ const AboutUs = () => {
 
               {show ? (
                 response?.description?.map((i, index) => (
-                  <View_description description={i} key={index} />
+                  <ViewDescription description={i} key={index} />
                 ))
               ) : (
-                <View_description description={response?.description?.[0]} />
+                <ViewDescription description={response?.description?.[0]} />
               )}
 
               {show ? (

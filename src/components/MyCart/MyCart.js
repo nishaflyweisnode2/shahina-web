@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   addFBP,
@@ -164,7 +164,7 @@ const MyCart = () => {
   };
 
   const [isPushingItems, setIsPushingItems] = useState(false);
-  const pushItemInApi = async () => {
+  const pushItemInApi = useCallback(async() => {
     if (isPushingItems) return;
     setIsPushingItems(true);
     for (const item of dummyCart) {
@@ -189,9 +189,9 @@ const MyCart = () => {
       dispatch(removeFromCart(removePayload));
     }
     setIsPushingItems(false);
-  };
+  },[dummyCart])
 
-  const pushDummyService = async () => {
+  const pushDummyService = useCallback(async() => {
     const processedProductIds = new Set();
 
     for (const item of serviceCart) {
@@ -217,15 +217,15 @@ const MyCart = () => {
       await dispatch(AddServiceBulk(ProductId, payload));
       dispatch(removeServiceDummy(ProductId));
     }
-  };
-
+  },[serviceCart])
+  
   useEffect(() => {
     if (dummyCart?.length > 0) {
       pushItemInApi();
     } else {
       dispatch(getCart());
     }
-  }, [dummyCart]);
+  }, [dummyCart ,dispatch ,pushItemInApi  ]);
 
   useEffect(() => {
     if (serviceCart?.length > 0) {
@@ -233,7 +233,7 @@ const MyCart = () => {
     } else {
       dispatch(getCart());
     }
-  }, [serviceCart]);
+  }, [serviceCart ,  dispatch ,pushDummyService ]);
 
   const fromDate = new Date(cart?.fromTime);
   const weekday = fromDate.toLocaleString("en-US", { weekday: "long" });

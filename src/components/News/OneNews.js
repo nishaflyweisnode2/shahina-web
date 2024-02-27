@@ -1,9 +1,9 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleNews } from "../../Repository/Api";
-import { View_description } from "../../Helper/Herlper";
+import { ViewDescription } from "../../Helper/Herlper";
 import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const OneNews = () => {
@@ -11,9 +11,10 @@ const OneNews = () => {
 
   const [response, setResponse] = useState([]);
 
-  function fetchHandler() {
+
+  const fetchHandler = useCallback(() => {
     getSingleNews(setResponse, id);
-  }
+  },[id])
 
   useEffect(() => {
     window.scrollTo({
@@ -24,7 +25,7 @@ const OneNews = () => {
 
   useEffect(() => {
     fetchHandler();
-  }, []);
+  }, [fetchHandler]);
 
   const getKeywords = () => {
     if (response?.keyWords) {
@@ -51,7 +52,7 @@ const OneNews = () => {
               img={response.image}
             />
 
-            <View_description description={response?.description} />
+            <ViewDescription description={response?.description} />
             <div className="keyword_cont">{getKeywords()}</div>
           </div>
         </section>

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 import { getAddress, getProfile, removeAddress } from "../Repository/Api";
 import { DateFormatter } from "../utils/helpingComponent";
 import AddressModal from "./Drawer/AddressModal";
@@ -301,7 +301,7 @@ const MyProfile = () => {
                     <p className="strong">Details : </p>
                   </div>
                   <div className="two-sec">
-                    <View_description
+                    <ViewDescription
                       description={profile?.subscriptionId?.details}
                     />
                   </div>

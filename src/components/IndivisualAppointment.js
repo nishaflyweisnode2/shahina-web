@@ -182,6 +182,7 @@ const IndivisualAppointment = () => {
                 fontSize: "18px",
                 color: "#e5d896",
               }}
+              rel="noreferrer"
             >
               {`  View Terms and Conditions`}
             </a>

@@ -11,7 +11,6 @@ import { addServiceLocally } from "../../store/DummySerivce";
 import { motion } from "framer-motion";
 import GallarySlider from "../Sliders/GallarySlider";
 import LimitedOffer from "../home/LimitedOffer";
-import Loader from "../Loader/Loader";
 import { ImageLazyLoading } from "../../utils/helpingComponent";
 
 const ServicePage = () => {
@@ -33,7 +32,7 @@ const ServicePage = () => {
   const [firstQuery, setFirstQuery] = useState("");
   const [secondQuery, setSecondQuery] = useState("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 786);
-  const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     getSingleService(id, setResponse);
@@ -166,11 +165,7 @@ const ServicePage = () => {
 
   return (
     <>
-      {" "}
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
+   
           <main className="service_details_page">
             <div
               className="Backward_Heading step_Heading"
@@ -434,8 +429,7 @@ const ServicePage = () => {
             </div>
           </main>
           <GallarySlider />
-        </>
-      )}
+    
     </>
   );
 };

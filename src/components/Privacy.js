@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 import { getPrivacyPolicy } from "../Repository/Api";
 
 const Privacy = () => {
@@ -41,7 +41,7 @@ const Privacy = () => {
         <div className="content privacy_policy" style={{ padding: "20px" }}>
           {response?.map((i, index) => (
             <p className="desc" key={index}>
-              <View_description description={i.privacy} />
+              <ViewDescription description={i.privacy} />
             </p>
           ))}
         </div>

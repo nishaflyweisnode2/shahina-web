@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 import { getNews } from "../Repository/Api";
 import { ImageLazyLoading } from "../utils/helpingComponent";
 
@@ -42,7 +42,7 @@ const AllNews = () => {
                 {card.title}
               </h3>
               <p className="text-xl font-normal desc">
-                <View_description
+                <ViewDescription
                   description={card?.description?.substr(0, 200)}
                 />
               </p>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import AllProducts from "./AllProducts";
 import { useNavigate, useParams } from "react-router-dom";
@@ -45,7 +45,7 @@ const ProductPage = () => {
 
   const url = `&${type}=${id}&limit=${limit}`;
 
-  const productHandler = async () => {
+  const productHandler = useCallback(async() => {
     try {
       setLoad(true);
       await getAllProducts(setProducts, url, setTotal);
@@ -54,7 +54,7 @@ const ProductPage = () => {
     } finally {
       setLoad(false);
     }
-  };
+  },[url])
 
   useEffect(() => {
     window.scrollTo({
@@ -65,7 +65,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     productHandler();
-  }, [url]);
+  }, [productHandler]);
 
   const navigate = useNavigate();
 
@@ -87,7 +87,7 @@ const ProductPage = () => {
     } else {
       setImg("/Image/39.jpg");
     }
-  }, [products, img]);
+  }, [products, img ,type]);
 
   const Component = () => {
     return (

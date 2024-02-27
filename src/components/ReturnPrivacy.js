@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { View_description } from "../Helper/Herlper";
+import { ViewDescription } from "../Helper/Herlper";
 import { getReturnPolicy } from "../Repository/Api";
 
 const ReturnPrivacy = () => {
@@ -37,7 +37,7 @@ const ReturnPrivacy = () => {
       </div>
 
       <div className="content privacy_policy" style={{ padding: "20px" }}>
-        <View_description description={shippingPrivacy} />
+        <ViewDescription description={shippingPrivacy} />
       </div>
     </main>
   );

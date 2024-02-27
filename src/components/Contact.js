@@ -133,7 +133,7 @@ const Contact = () => {
                       <span>{response?.address} </span>
                     </div>
                   </div>
-                  <a href={response?.google} target="_blank">
+                  <a href={response?.google} target="_blank" rel="noreferrer">
                     <button
                       className="flex items-center gap-3 font-semibold text-green justify-center border-2 py-2  border-green"
                       style={{ padding: "10px" }}
