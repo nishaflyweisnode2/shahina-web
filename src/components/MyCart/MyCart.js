@@ -381,6 +381,10 @@ const MyCart = () => {
   const shipping = cart?.shipping;
   const total = cart?.total;
 
+  const disableBtn =
+    deliveryAddressPresent != null &&
+    deliveryAddressPresent != undefined &&
+    pickUpFromStore === false;
   return (
     <>
       <TextDrawer
@@ -445,6 +449,8 @@ const MyCart = () => {
                     hasService={hasService}
                     hasGiftCard={hasGiftCard}
                     hasProducts={hasProducts}
+                    disableBtn={disableBtn}
+                    hasAppointmentTime={hasAppointmentTime}
                   />
                 )}
               </div>
@@ -471,6 +477,7 @@ const MyCart = () => {
                 shippingPrivacy={shippingPrivacy}
                 isMobile={isMobile}
                 hasGiftCard={hasGiftCard}
+                disableBtn={disableBtn}
               />
             </div>
           ) : (

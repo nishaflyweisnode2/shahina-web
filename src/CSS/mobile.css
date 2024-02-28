@@ -1015,4 +1015,9 @@
     height: 500px;
     overflow: hidden;
   }
+
+  .schedule_1 .left_div .Box .Item input{
+    width: 30px;
+    height: 30px;
+  }
 }

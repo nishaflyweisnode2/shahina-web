@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useStripe,
   useElements,
@@ -8,15 +8,19 @@ import {
 } from "@stripe/react-stripe-js";
 import { showMsg } from "../../Repository/Api";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function StripeComp() {
+
+export default function StripeComp({ hasAppointmentTime }) {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState();
   const [loading, setLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false);
   const navigate = useNavigate();
+  const [complete, setComplete] = useState(false);
+  const [show, setShow] = useState(false);
+  const [showComplete, setShowComplete] = useState(false);
 
   const handleError = (error) => {
     setLoading(false);
@@ -25,6 +29,10 @@ export default function StripeComp() {
 
   const serviceCheckout = async (event) => {
     event.preventDefault();
+    if (hasAppointmentTime) {
+      if (complete === true) {
+        setShowComplete(false);
+        setShow(false);
     setSubmitLoading(true);
     try {
       const response = await axios.post(
@@ -50,7 +58,13 @@ export default function StripeComp() {
       ) {
         navigate("/schedule2");
       }
+    }    } else {
+      setShowComplete(true);
+      setErrorMessage("Please fill card details first");
     }
+  } else {
+    setShow(true);
+  }
   };
 
   const handleSubmit = async () => {
@@ -105,6 +119,41 @@ export default function StripeComp() {
     marginTop: "15px",
   };
 
+  useEffect(() => {
+    if (!elements) return;
+    const cardElement = elements.getElement(PaymentElement);
+    const onChange = (event) => {
+      setComplete(event.complete);
+    };
+    cardElement.on("change", onChange);
+    return () => {
+      cardElement.off("change", onChange);
+    };
+  }, [elements]);
+
+  const messageCaster = () => {
+    if (!hasAppointmentTime && show) {
+      return (
+        <Link
+          to="/schedule2"
+          style={{
+            color: "blue",
+            textDecoration: "underline",
+            marginTop: "10px",
+          }}
+        >
+          Please select a date for your appointment first !{" "}
+        </Link>
+      );
+    }
+  };
+
+  const showFieldMsg = () => {
+    if (showComplete && !complete) {
+      return <div style={{ color: "red" }}>{errorMessage}</div>;
+    }
+  };
+
   return (
     <>
       {submitLoading && (
@@ -113,7 +162,8 @@ export default function StripeComp() {
         </div>
       )}
       <form onSubmit={serviceCheckout}>
-        <PaymentElement />
+      <PaymentElement id="payment" />
+
 
         <div className="content" style={{ width: "100%" }}>
           <p>
@@ -157,8 +207,8 @@ export default function StripeComp() {
           />
           <p>Safe & Secure Payments.</p>
         </div>
-
-        {errorMessage && <div>{errorMessage}</div>}
+        {messageCaster()}
+        {showFieldMsg()}
       </form>
     </>
   );

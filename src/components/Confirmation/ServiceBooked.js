@@ -43,10 +43,12 @@ const ServiceBooked = () => {
       <p className="title">Your appointment is confirmed!</p>
       <p className="desc">
         We are pleased to confirm your upcoming appointment with us on{" "}
-        <span style={{ backgroundColor: "#e5d896" }}>{DOBfetcher(date)} </span>
+        <span style={{ backgroundColor: "#e5d896" }}>
+          {date && DOBfetcher(date)}{" "}
+        </span>
         at{" "}
         <span style={{ backgroundColor: "#e5d896" }}>
-          <DateFormatter time={date} />{" "}
+        {date && <DateFormatter time={date} />}
         </span>{" "}
         . <br /> Thank you for choosing our services.
       </p>

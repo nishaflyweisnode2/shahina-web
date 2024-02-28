@@ -1021,7 +1021,11 @@ const updateProfile = async (payload) => {
       }
     );
     console.log(response?.status)
-  } catch {}
+  } catch (e) {
+    if (e?.code === "ERR_NETWORK") {
+      showMsg("", "Image size exceeds 1 MB limit", "danger");
+    }
+  }
 };
 
 const removeAddress = async (payload) => {

@@ -57,10 +57,10 @@ const options = {
     },
   },
 };
-const CheckElement = ({heading}) => {
+const CheckElement = ({disableBtn}) => {
   return (
     <Elements stripe={stripePromise} options={options}>
-      <CheckoutIntent />
+      <CheckoutIntent disableBtn={disableBtn} />
     </Elements>
   );
 };

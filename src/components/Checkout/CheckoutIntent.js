@@ -1,14 +1,17 @@
 /** @format */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { orderFailed, orderSuccess, showMsg } from "../../Repository/Api";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const CheckoutIntent = () => {
+const CheckoutIntent = ({ disableBtn }) => {
   const [processing, setProcessing] = useState("");
   const [loading, setLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
+  const [show, setShow] = useState(false);
+  const [completeMsg, setCompleteMsg] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stripe = useStripe();
@@ -59,30 +62,38 @@ const CheckoutIntent = () => {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    setProcessing(true);
-    setLoading(true);
-    try {
-      await handleCheckout();
-      await placeOrder(orderId);
-      if (url && orderId) {
-        const clientSecret = url;
-        const payload = await stripe.confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: elements.getElement(CardElement),
-          },
-        });
+    if (complete === true) {
+      if (disableBtn === true) {
+        setProcessing(true);
+        setLoading(true);
+        try {
+          await handleCheckout();
+          await placeOrder(orderId);
+          if (url && orderId) {
+            const clientSecret = url;
+            const payload = await stripe.confirmCardPayment(clientSecret, {
+              payment_method: {
+                card: elements.getElement(CardElement),
+              },
+            });
 
-        if (payload.error) {
-          orderFailed(orderId);
-          setProcessing(false);
-          setLoading(false);
-        } else {
-          setProcessing(false);
-          dispatch(orderSuccess(orderId, navigate, setLoading));
+            if (payload.error) {
+              orderFailed(orderId);
+              setProcessing(false);
+              setLoading(false);
+            } else {
+              setProcessing(false);
+              dispatch(orderSuccess(orderId, navigate, setLoading));
+            }
+          }
+        } catch (e) {
+          console.log(e);
         }
+      } else {
+        setShow(true);
       }
-    } catch (e) {
-      console.log(e);
+    } else {
+      setCompleteMsg("Please fill card details first");
     }
   };
 
@@ -114,6 +125,31 @@ const CheckoutIntent = () => {
     marginTop: "15px",
   };
 
+  const messageCaster = () => {
+    if (!disableBtn && show) {
+      return (
+        <Link
+          to="/my-profile"
+          style={{ color: "blue", textDecoration: "underline" }}
+        >
+          Please add shipping address first
+        </Link>
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (!elements) return;
+    const cardElement = elements.getElement(CardElement);
+    const onChange = (event) => {
+      setComplete(event.complete);
+    };
+    cardElement.on("change", onChange);
+    return () => {
+      cardElement.off("change", onChange);
+    };
+  }, [elements]);
+
   return (
     <>
       {loading && (
@@ -131,6 +167,7 @@ const CheckoutIntent = () => {
               <button disabled={processing} style={btnStyle} id="submit">
                 <span id="button-text">Pay now</span>
               </button>
+              {messageCaster()}
               <div className="flex gap-2 items-center mt-14 ">
                 <img
                   className="w-6 h-6"
@@ -139,6 +176,7 @@ const CheckoutIntent = () => {
                 />
                 <p>Safe & Secure Payments.</p>
               </div>
+              {!complete && <div style={{ color: "red" }}>{completeMsg}</div>}
             </form>
           </div>
         </div>

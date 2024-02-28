@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ViewDescription } from "../Helper/Herlper";
 import { getAddress, getProfile, removeAddress } from "../Repository/Api";
-import { DateFormatter } from "../utils/helpingComponent";
+import { DateFormatter ,DOBFormater } from "../utils/helpingComponent";
 import AddressModal from "./Drawer/AddressModal";
 import ProfileModal from "./Drawer/ProfileModal";
 import SubsModal from "./Drawer/SubsModal";
@@ -140,7 +140,7 @@ const MyProfile = () => {
           {QueryHandler(profile?.lastName, "Last Name")}
           {QueryHandler(profile?.gender, "Gender")}
           {profile?.dob != null &&
-            QueryHandler(DateFormatter(profile?.dob), "Date of Birth")}
+            QueryHandler(DOBFormater(profile?.dob), "Date of Birth")}
          
           {QueryHandler(profile?.countryCode, "Country Code")}
           {profile?.phone && (

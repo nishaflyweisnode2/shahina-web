@@ -32,6 +32,7 @@ const PriceDetails = ({
   returnPolicy,
   isMobile,
   hasGiftCard,
+  disableBtn,
 }) => {
   return (
     <section className="right_container">
@@ -254,6 +255,7 @@ const PriceDetails = ({
           hasService={hasService}
           hasGiftCard={hasGiftCard}
           hasProducts={hasProducts}
+          disableBtn={disableBtn}
         />
       )}
     </section>
