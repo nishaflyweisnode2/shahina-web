@@ -382,8 +382,8 @@ const MyCart = () => {
   const total = cart?.total;
 
   const disableBtn =
-    deliveryAddressPresent != null &&
-    deliveryAddressPresent != undefined &&
+    deliveryAddressPresent !=== null &&
+    deliveryAddressPresent !== undefined &&
     pickUpFromStore === false;
   return (
     <>
